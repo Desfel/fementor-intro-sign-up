@@ -1,9 +1,21 @@
 /* Misc */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 $vue-color: #46bd87;
 $danger-color: #ea4d46;
 
-/* Navbar */
+$primaryColor1: hsl(0, 100%, 74%);
+$primaryColor2: hsl(154, 59%, 51%);
+
+$secondaryColor: hsl(248, 32%, 49%);
+
+$neutralColor1: hsl(249, 10%, 26%);
+$neutralColor2: hsl(246, 25%, 77%);
+
+$light: #fff;
+$textFont: 'Poppins', sans-serif;
+
+  /* Navbar */
 
 $navbar-height: 3.6rem;
 $navbar-color: #fff;

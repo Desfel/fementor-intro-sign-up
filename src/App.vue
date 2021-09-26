@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
     <div class="main-wrapper">
       <router-view />
     </div>
@@ -20,13 +19,12 @@
   </div>
 </template>
 <script>
-import NavBar from '@/components/NavBar'
 import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
 import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: { NavBar, NewContentAvailableToastr, AppleAddToHomeScreenModal },
+  components: { NewContentAvailableToastr, AppleAddToHomeScreenModal },
   computed: {
     ...mapGetters('app', ['newContentAvailable']),
     ...mapState('app', ['showAddToHomeScreenModalForApple', 'refreshingApp'])
@@ -39,15 +37,51 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/theme/variables.scss';
+
+html,
+body,
+main,
+#app {
+  height: 100%;
+  width: 100%;
+}
+
 body {
+  position: relative;
   margin: 0;
+  background: $primaryColor1;
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('./assets/img/bg-intro-desktop.png') top left no-repeat;
+    background-size: cover;
+    opacity: 0.9;
+    content: '';
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 
   a {
     font-weight: 500;
     text-decoration: none;
   }
 
+  p,
+  h1 {
+    font-family: $textFont;
+    margin: 0;
+  }
+
   #app {
+    position: relative;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -61,25 +95,27 @@ body {
       right: 10px;
     }
 
-    .apple-add-to-home-screen-modal {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      top: 0;
-      left: 0;
-      height: fit-content;
-      width: fit-content;
-      margin: auto;
-      z-index: 1000;
-    }
-
     .main-wrapper {
-      margin-top: 3.6rem;
-      padding: 20px;
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 767px) {
+        height: auto;
+        display: block;
+      }
 
       .page-wrapper {
-        width: 60%;
+        min-height: 0;
+        min-width: 0;
+        width: 100%;
+        height: 100%;
         margin: auto;
+        max-width: 1440px;
 
         @media screen and (max-width: 1000px) {
           width: 100%;
